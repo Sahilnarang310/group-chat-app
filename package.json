@@ -14,9 +14,9 @@
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/sahil194005/Group-Chat-Complete/issues"
+    "url": "https://github.com/Sahilnarang310/group-chat-app/"
   },
-  "homepage": "https://github.com/sahil194005/Group-Chat-Complete#readme",
+  "homepage": "https://github.com/Sahilnarang310/group-chat-app/#readme",
   "dependencies": {
     "bcrypt": "^5.1.0",
     "body-parser": "^1.20.2",
