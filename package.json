@@ -16,7 +16,7 @@
   "bugs": {
     "url": "https://github.com/Sahilnarang310/group-chat-app/issues"
   },
-  "homepage": "https://github.com/Sahilnarang310/group-chat-app/issues",
+  "homepage": "https://github.com/Sahilnarang310/group-chat-app/#readme",
   "dependencies": {
     "bcrypt": "^5.1.0",
     "body-parser": "^1.20.2",
