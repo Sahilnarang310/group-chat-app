@@ -4,6 +4,7 @@ let chatDiv = document.querySelector('#chatDiv');
 let sendBtn = document.querySelector('#sendBtn');
 
 
+set
 
 function showMessageDiv(text) {
     let head2 = document.createElement("h2");
@@ -13,7 +14,6 @@ function showMessageDiv(text) {
         document.querySelector("#messageDiv").innerHTML = "";
     }, 3000);
 }
-
 function parseJwt (token) {
     var base64Url = token.split('.')[1];
     var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
@@ -23,15 +23,12 @@ function parseJwt (token) {
     
     return JSON.parse(jsonPayload);
 }
-
 sendBtn.addEventListener('click',sendMsg);
 async function sendMsg(e){
     let msg = document.querySelector('#footer input').value
     add_msg_to_db(msg);
     
 }
-
-
 async function loadChats (){
 try {
     let token  = localStorage.getItem('token');
@@ -41,10 +38,8 @@ try {
 } catch (error) {
     console.log(error);
     // showMessageDiv(error.response.data.msg);
-
 }
 }
-
 async function DisplayPrevChats(chats){
     try {
         let token = localStorage.getItem('token');
@@ -55,7 +50,6 @@ async function DisplayPrevChats(chats){
             let newpara = document.createElement('p');
             if(chats[i].userId==curruser.userId){
               newpara.innerText = `You: ${chats[i].message}`  ;
-
             } 
             else{
               newpara.innerText = `${chats[i].name}: ${chats[i].message}`  ;
@@ -69,7 +63,6 @@ async function DisplayPrevChats(chats){
         showMessageDiv(error.response.data.msg);
     }
 }
-
 async function add_msg_to_db(msg){
     try {
         let token = localStorage.getItem('token');
