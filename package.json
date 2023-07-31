@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Sahilnarang310/group-chat-app.git"
+    "url": "git+https://github.com/Sahilnarang310/group-chat-app"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Sahilnarang310/group-chat-app/issues"
   },
-  "homepage": "https://github.com/Sahilnarang310/group-chat-app/#readme",
+  "homepage": "https://github.com/Sahilnarang310/group-chat-app#readme",
   "dependencies": {
     "aws-sdk": "^2.1409.0",
     "bcrypt": "^5.1.0",
@@ -25,6 +25,7 @@
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.0",
+    "multer": "^1.4.5-lts.1",
     "mysql2": "^3.4.2",
     "nodemon": "^2.0.22",
     "sequelize": "^6.32.1",
