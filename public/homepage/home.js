@@ -239,6 +239,8 @@ async function loadChats() {
 	}
 }
 
+
+
 async function DisplayPrevChats(chats) {
 	try {
 		let token = localStorage.getItem("token");
@@ -255,8 +257,11 @@ async function DisplayPrevChats(chats) {
 
 			chatDiv.appendChild(newpara);
 		}
-	} catch (error) {
+	} 
+	catch (error) {
 		console.log(error);
 		showMessageDiv(error.response.data.msg);
+	
 	}
+
 }
