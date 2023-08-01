@@ -11,6 +11,24 @@ socket.on("message", (msg, userName, groupId) => {
 	}
 });
 
+socket.on("file", (msg, userName, groupId) => {
+	if (localStorage.getItem("currentGroupId")) {
+		let gId = localStorage.getItem("currentGroupId");
+		if (groupId == gId) {
+			let newpara = document.createElement("p");
+
+			let fileLink = document.createElement("a");
+			fileLink.href = msg;
+			fileLink.innerText = "Download File";
+
+			newpara.appendChild(document.createTextNode(`${userName}: `));
+			newpara.appendChild(fileLink);
+
+			document.querySelector("#chatDiv").appendChild(newPara);
+		}
+	}
+});
+
 window.addEventListener("DOMContentLoaded", (e) => {
 	displayGroupsLeft();
 	loadChats();
@@ -183,13 +201,14 @@ async function addMembers(e) {
 		if (memberEmail) {
 			let token = localStorage.getItem("token");
 			let res = await axios.post("http://localhost:3000/groups/addmembers", { memberEmail, groupid }, { headers: { authorization: token } });
+
 			showMessageDiv(res.data.msg);
 		} else {
 			console.log("no member");
 		}
 	} catch (error) {
 		console.log(error);
-		showMessageDiv(error.res.data.msg);
+		showMessageDiv(error.response.data.msg);
 	}
 }
 
@@ -209,32 +228,31 @@ document.querySelector("#sendBtn").addEventListener("click", sendMsg);
 async function sendMsg(e) {
 	try {
 		e.preventDefault();
-		
+
 		if (document.querySelector("#uploadBtn").files[0]) {
 			let token = localStorage.getItem("token");
 			let groupId = localStorage.getItem("currentGroupId");
 			let file = document.querySelector("#uploadBtn").files[0];
 			let formData = new FormData();
 			formData.append("file", file);
-			let response = await axios.post(`http://localhost:3000/upload/${groupId}`, formData, { headers: { authorization: token }, "Content-Type": "multipart/form-data" });
-			console.log(response);
-			// console.log(response.data);
-		}
-		else{
-		let msg = document.querySelector("#inputText").value;
-		document.querySelector("#inputText").value = "";
-		add_msg_to_db(msg);}
-	} catch (error) {
-		console.log(error);
-	}
-}
+			console.log('before')
 
-async function add_msg_to_db(msg) {
-	try {
-		let token = localStorage.getItem("token");
-		let groupId = localStorage.getItem("currentGroupId");
-		let response = await axios.post("http://localhost:3000/chat", { message: msg, groupId: groupId }, { headers: { authorization: token } });
-		socket.emit("message", msg, response.data.data, groupId);
+
+
+			let response = await axios.post(`http://localhost:3000/upload/${groupId}`, formData, { headers: { authorization: token }, "Content-Type": "multipart/form-data" });
+			
+			
+			
+			console.log('after');
+			// socket.emit("file", response.data.data, response.data.username, groupId);
+		} else {
+			let msg = document.querySelector("#inputText").value;
+			document.querySelector("#inputText").value = "";
+			let token = localStorage.getItem("token");
+			let groupId = localStorage.getItem("currentGroupId");
+			let response = await axios.post("http://localhost:3000/chat", { message: msg, groupId: groupId }, { headers: { authorization: token } });
+			socket.emit("message", msg, response.data.data, groupId);
+		}
 	} catch (error) {
 		console.log(error);
 	}
@@ -260,10 +278,19 @@ async function DisplayPrevChats(chats) {
 		chatDiv.innerHTML = "";
 		for (let i = 0; i < chats.length; i++) {
 			let newpara = document.createElement("p");
-			if (chats[i].userId == curruser.userId) {
-				newpara.innerText = `You: ${chats[i].message}`;
+			if (chats[i].type == "text") {
+				if (chats[i].userId == curruser.userId) {
+					newpara.innerText = `You: ${chats[i].message}`;
+				} else {
+					newpara.innerText = `${chats[i].name}: ${chats[i].message}`;
+				}
 			} else {
-				newpara.innerText = `${chats[i].name}: ${chats[i].message}`;
+				let fileLink = document.createElement("a");
+				fileLink.href = chats[i].message;
+				fileLink.innerText = "click to See";
+
+				newpara.appendChild(document.createTextNode(`${chats[i].name}: `));
+				newpara.appendChild(fileLink);
 			}
 
 			chatDiv.appendChild(newpara);

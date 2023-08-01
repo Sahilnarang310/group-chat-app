@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Sahilnarang310/group-chat-app"
+    "url": "https://github.com/Sahilnarang310/group-chat-app/git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Sahilnarang310/group-chat-app/issues"
+    "url": "https://github.com/Sahilnarang310/group-chat-app//issues"
   },
-  "homepage": "https://github.com/Sahilnarang310/group-chat-app#readme",
+  "homepage": "https://github.com/Sahilnarang310/group-chat-app/#readme",
   "dependencies": {
     "aws-sdk": "^2.1409.0",
     "bcrypt": "^5.1.0",
