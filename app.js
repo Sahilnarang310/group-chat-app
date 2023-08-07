@@ -17,8 +17,10 @@ io.on("connection", (socket) => {
 const userRoute = require("./routes/users");
 const chatsRoute = require("./routes/chats");
 const groupRoute = require("./routes/groups");
+const path = require("path");
 
-const dbConnection = require("./db/connect");
+const sequelize = require("./db/connect");
+const bodyParser = require("body-parser");
 const cors = require("cors");
 const User = require("./models/users");
 const chats = require("./models/chats");
@@ -40,20 +42,14 @@ app.use(userRoute);
 app.use(chatsRoute);
 app.use(groupRoute);
 
-
 (async () => {
-  try {
-    await dbConnection.authenticate();
-    console.log(
-      "Connection to the database has been established successfully."
-    );
-    console.log("Models synced to the database.");
-  } catch (error) {
-    console.error("Unable to connect to the database:", error);
-  }
-})();
+	try {
+		await sequelize.sync(); 
 
-app.listen(3000, (err) => {
-  if (err) throw err;
-  console.log(`App listening on port ${process.env.PORT}`);
-});
+		http.listen(process.env.PORT, () => {
+			console.log(`server listening on port ${process.env.PORT}`);
+		});
+	} catch (error) {
+		console.log(error);
+	}
+})();
