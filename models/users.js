@@ -3,26 +3,29 @@ const { Sequelize, DataTypes } = require("sequelize");
 
 const User = sequelize.define("users", {
 	id: {
-		type: DataTypes.INTEGER,
+		type: Sequelize.INTEGER,
 		unique: true,
 		allowNull:false,
 		primaryKey:true,
 		autoIncrement: true,
 	},
 	name: {
-		type: DataTypes.STRING,
+		type: Sequelize.STRING,
 	},
 	email: {
-		type: DataTypes.STRING,
+		type: Sequelize.STRING,
 		unique: true,
 	},
 	phoneNo: {
-		type: DataTypes.BIGINT,
+		type: Sequelize.BIGINT,
 	},
 	password:{
-		type:DataTypes.STRING
+		type:Sequelize.STRING
 	}
 });
+(async () => {
+	await sequelize.sync(); // This synchronizes the model with the database
+  })();
 
 module.exports = User;   
 

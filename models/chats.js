@@ -1,21 +1,21 @@
 const sequelize = require('../db/connect');
-const {DataTypes} = require('sequelize')
+const {Sequelize, DataTypes} = require('sequelize')
 
 const Chat = sequelize.define('chats',{
     id:{
         primaryKey:true,
         autoIncrement:true,
-        type:DataTypes.INTEGER,
+        type:Sequelize.INTEGER,
         allowNull:false,
     },
     message:{
-        type:DataTypes.STRING
+        type:Sequelize.STRING
     },
     name:{
-        type:DataTypes.STRING
+        type:Sequelize.STRING
     },
     type:{
-        type:DataTypes.STRING
+        type:Sequelize.STRING
     }
 })
 

@@ -1,4 +1,4 @@
-const { DataTypes } = require("sequelize");
+const { Sequelize, DataTypes } = require("sequelize");
 const sequelize = require("../db/connect");
 
 const Group = sequelize.define("group", {
@@ -6,13 +6,13 @@ const Group = sequelize.define("group", {
 		unique: true,
 		primaryKey: true,
 		autoIncrement: true,
-		type: DataTypes.INTEGER,
+		type: Sequelize.INTEGER,
 	},
 	groupName: {
-		type: DataTypes.STRING,
+		type: Sequelize.STRING,
 	},
 	createdBy:{
-		type:DataTypes.INTEGER
+		type:Sequelize.INTEGER
 	} 
    
 });

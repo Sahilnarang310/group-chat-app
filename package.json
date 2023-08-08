@@ -1,7 +1,6 @@
 {
   "name": "group-chat-complete",
   "version": "1.0.0",
-  "description": "",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -31,5 +30,6 @@
     "sequelize": "^6.32.1",
     "sib-api-v3-sdk": "^8.5.0",
     "socket.io": "^4.7.1"
-  }
+  },
+  "description": ""
 }

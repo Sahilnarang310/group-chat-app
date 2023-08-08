@@ -1,9 +1,9 @@
-const {DataTypes} = require('sequelize');
+const {Sequelize, DataTypes} = require('sequelize');
 const sequelize = require('../db/connect');
 
 const UserGroups = sequelize.define('UserGroups',{
     id:{
-        type:DataTypes.INTEGER,
+        type:Sequelize.INTEGER,
         unique:true,
         autoIncrement:true,
         primaryKey:true

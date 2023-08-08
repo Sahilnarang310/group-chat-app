@@ -26,7 +26,13 @@ async function formSubmit(e) {
 		if (response) {
 			showMessageDiv(response.data.msg);
 			window.location.href = '../login/login.html'
+			// console.log(response);
 		}
+		else {
+			showMessageDiv("Unexpected response status:" + response.status);
+		  }
+
+
 	} catch (error) {
 		console.log(error);
 		showMessageDiv(error.response.data.msg);
